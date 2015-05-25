@@ -1,0 +1,75 @@
+<!doctype html>
+<html lang="es">
+    <head>
+        <meta charset="utf-8">
+        <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    	<meta name="viewport" content="width=device-width, initial-scale=1">
+        <link rel="stylesheet" type="text/css" href="css/bootstrap.css">
+        <title>Registros</title>
+         <script src="https://code.jquery.com/jquery-1.10.2.js"></script>
+        <script>
+		$(function() {
+			$("#guardarDatos").click(function() {
+				var fNombre = $("#nombre").val();
+				var fApellido = $("#apellido").val();
+				var fComentario = $("#comentario").val();
+							
+				$("#nombre").val(" ");
+				$("#apellido").val(" ");
+				$("#comentario").val(" ");
+    			
+				 $.ajax({type: "POST", 
+						url: "http://solucioneswww.com/proyectos/registro/agregar.php",
+                      	data: ({Nombre: fNombre, Apellido: fApellido, Comentario: fComentario}),
+                      cache: false,
+                      dataType: "text",
+                      success: Enviamos
+                    });
+				
+				});
+				
+				function Enviamos(data){       
+					alert(data+"Reporte enviado");
+					
+				}
+			
+			});
+		</script>
+    </head>
+    <body>
+ 		<div class="container"> 
+        	<div class="row">
+            	<div class="col-xs-12">  
+                    <div class="panel panel-default">
+                            <div class="panel-body form-horizontal">
+                                <div class="form-group">
+                                    <label for="nombre" class="col-sm-3 control-label">Nombre</label>
+                                    <div class="col-sm-9">
+                                        <input type="text" class="form-control" id="nombre" name="nombre" value="">
+                                    </div>
+                                </div>
+                                <div class="form-group">
+                                    <label for="apellido" class="col-sm-3 control-label">Apellido</label>
+                                    <div class="col-sm-9">
+                                        <input type="text" class="form-control" id="apellido" name="apellido" value="">
+                                    </div>
+                                </div>
+                                <div class="form-group">
+                                    <label for="comentario" class="col-sm-3 control-label">Comentario</label>
+                                    <div class="col-sm-9">
+                                       <textarea class="form-control textarea" rows="3" name="comentario" id="comentario" placeholder="Comentario"></textarea>
+                                    </div>
+                                </div>
+                                <button type="submit" class="btn main-btn pull-right" id="guardarDatos" >Guardar</button>
+                                
+                            </div>
+                        </div>
+            		</div>
+                </div>
+        	</div>
+        
+        
+        
+    	<script src="js/bootstrap.js"></script>
+    </body>
+</html>
